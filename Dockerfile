@@ -26,4 +26,6 @@ RUN sed -i 's/VM_ARGS="-Xms128m -Xmx512m -XX:PermSize=128m -XX:MaxPermSize=128m"
     cd /opt/SBM764/patches/bmpatch-7.6.4.12/bin && ./setpatchenv.sh
 WORKDIR /usr/weblogic1036/user_projects/domains/sbm76/
 CMD ./setupsbm.sh
-
+#ADD wsserver.sh /usr/weblogic1036/user_projects/domains/sbm76/
+#ENTRYPOINT ["bash","wsserver.sh"]  
+#CMD ["setup"]
