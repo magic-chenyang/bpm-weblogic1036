@@ -1,0 +1,30 @@
+version: '2'
+services: 
+  oracle:
+    build: ./oracle
+    volumes:
+      - oracle-volume:/u01
+    ports:
+      - 1521:1521
+      - 8088:8080
+      - 6222:22
+    environment:
+      - ORACLE_ENABLE_XDB=true
+      - ORACLE_ALLOW_REMOTE=true
+  bpm:
+    build: ./
+    depends_on:
+      - oracle
+    volumes:
+      - conf-bpm:/opt/SBM764/conf
+      - webapps-bpm:/opt/SBM764/webapps
+      - lib-bpm:/opt/SBM764/lib
+    ports:
+      - 14002:14002
+      - 18793:18793
+    hostname: hydsoft 
+volumes:
+  oracle-volume:
+  conf-bpm:
+  webapps-bpm:
+  lib-bpm:
